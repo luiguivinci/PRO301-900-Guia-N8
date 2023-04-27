@@ -9,6 +9,10 @@ const txtFormFechaNacimiento = document.getElementById(
 const txtFormEmail = document.getElementById("txtFormEmail");
 
 //
+// Declaración de variables que contienen el booleano de rut válido
+let rutValido;
+
+//
 // Declaración de variables que capturarán los botones
 const btnFormEnviar = document.getElementById("btnFormEnviar");
 
@@ -22,13 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Lógica de control de los inputs
   txtFormRut.addEventListener("input", () => {
     formatInputRut(txtFormRut);
-    if (
-      txtFormRut.value.length === 12 &&
-      validatorRut(txtFormRut.value) === false
-    ) {
+    rutValido = validatorRut(txtFormRut.value);
+    if (txtFormRut.value.length === 12 && rutValido === false) {
       labelRut.classList.remove("d-none");
-      txtFormRut.removeAttribute("disabled"); // QUEDÉ AQUI INTENTADO DESHABILITAR EL DISABLE CUANDO NO ES VALIDO EL RUT
-      console.log(validatorRut(txtFormRut.value));
+      txtFormRut.removeAttribute("disabled");
+
+      // QUEDÉ AQUI INTENTADO DESHABILITAR EL DISABLE CUANDO NO ES VALIDO EL RUT
+      console.log(rutValido);
     } else {
       labelRut.classList.add("d-none");
     }
@@ -48,16 +52,17 @@ document.addEventListener("DOMContentLoaded", () => {
       txtFormEmail.value !== ""
     ) {
       // Validación del Rut
-      validated_txtFormRut = txtFormRut.value !== "" ? true : false;
+      const validated_txtFormRut =
+        txtFormRut.value !== "" && rutValido === true ? true : false;
 
       // Validación del nombre
-      validated_txtFormNombre = txtFormNombre.value !== "" ? true : false;
+      const validated_txtFormNombre = txtFormNombre.value !== "" ? true : false;
 
       // Validación de edad
-      validated_intFormEdad = intFormEdad.value !== "" ? true : false;
+      const validated_intFormEdad = intFormEdad.value !== "" ? true : false;
 
       // Validación de fecha de nacimiento
-      validated_txtFormFechaNacimiento =
+      const validated_txtFormFechaNacimiento =
         txtFormFechaNacimiento.value !== ""
           ? txtFormFechaNacimiento.value
           : false;
@@ -67,7 +72,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       labelCampoRequerido.classList.add("d-none");
 
-      console.log("ENVIADO");
+      Swal.fire({
+        title: "Formulario enviado!",
+        text: "",
+        icon: "success",
+        confirmButtonText: "AWCEPTAR",
+      });
+      txtFormRut.value = "-";
+      txtFormNombre.value = "";
+      intFormEdad.value = "";
+      txtFormFechaNacimiento.value = "";
+      txtFormEmail.value = "";
     } else {
       Swal.fire({
         title: "Todos los campos son requeridos",
