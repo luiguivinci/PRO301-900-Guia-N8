@@ -1,0 +1,10 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Agrega estilo personalizado para el contenido principal (main) para ocupar el espacio restante */
+main {
+  flex: 1;
+}

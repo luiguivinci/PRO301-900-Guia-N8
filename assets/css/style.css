@@ -1,0 +1,59 @@
+/* Clase para resetear estilos predeterminados del navegador */
+.reset-estilos {
+  /* Resetear margen y relleno */
+  margin: 0;
+  padding: 0;
+
+  /* Resetear listas */
+  list-style: none;
+
+  /* Resetear decoración de enlaces */
+  text-decoration: none;
+
+  /* Resetear colores */
+  color: inherit;
+  background-color: transparent;
+
+  /* Resetear fuentes */
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+
+  /* Resetear bordes */
+  border: none;
+
+  /* Resetear display y tamaño */
+  display: inline;
+  width: auto;
+  height: auto;
+
+  /* Resetear otros estilos */
+  box-sizing: border-box;
+  outline: none;
+  cursor: inherit;
+  vertical-align: baseline;
+}
+
+.clean-li {
+  list-style-type: none;
+}
+
+.input-ws {
+  width: 50px;
+}
+
+.footer-center {
+  text-align: center;
+}
+
+.bg-body-color {
+  background-color: #f9f5eb;
+}
+
+.bg-container-color {
+  background-color: #a5d7e8;
+}
+
+.bg-footer-color {
+  background-color: #ea5455;
+}
