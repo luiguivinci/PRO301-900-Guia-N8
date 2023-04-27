@@ -29,9 +29,6 @@
 
     <!-- css responsive -->
     <link rel="stylesheet" href="../assets/css/mobile.css" />
-
-    <!-- script -->
-    <script src="../assets/js/app.js"></script>
   </head>
   <body>
     <!-- Encabezado (header) -->
@@ -39,6 +36,7 @@
       <h1>PRO301 - Guía N8</h1>
       <h5>
         <a
+          hidden
           href="https://github.com/luiguivinci/PRO301-900-Guia-N8"
           class="btn btn-dark"
           >Repositorio en GitHub</a
@@ -49,21 +47,65 @@
 
     <!-- Contenido Principal (main) -->
     <main class="container my-5">
-      <h2>Contenido Principal</h2>
-      <p>Ejercicio 7</p>
+      <h2></h2>
+      <p></p>
 
       <!-- Parte 1 (section) -->
-      <section class="my-5">
-        <h3>Formulario con validaciones</h3>
-        <p></p>
+      <section class="my-5 row">
+        <form class="form-control">
+          <h3>Formulario con validaciones</h3>
+          <p></p>
 
-        <h5>Arreglo:</h5>
-        <input id="inputNumeroMayor1" class="input-group" />
-        <button id="btnImprimirNumeroMayor1" class="btn btn-primary mt-3 mb-2">
-          Mostrar número mayor
-        </button>
-        <h5>resultado:</h5>
-        <input id="outputNumeroMayor1" class="input-group" readonly />
+          <h5 class="mb-1">Rut:</h5>
+          <small
+            ><label for="txtFormRut" class="" style="color: red"
+              >Campo requerido...</label
+            ></small
+          >
+          <input
+            required
+            type="text"
+            id="txtFormRut"
+            class="input-group mb-3 m-sm-2"
+          />
+          <h5 class="mb-1">Nombre:</h5>
+          <input
+            required
+            type="text"
+            id="txtFormNombre"
+            class="input-group mb-3 m-sm-2"
+          />
+          <h5 class="mb-1">Edad:</h5>
+          <input
+            required
+            type="number"
+            min="0"
+            max="150"
+            id="intFormEdad"
+            class="input-group mb-3 m-sm-2"
+          />
+          <h5 class="mb-1">Fecha de nacimiento:</h5>
+          <input
+            required
+            type="date"
+            id="txtFormFechaNacimiento"
+            class="input-group mb-3 m-sm-2"
+          />
+          <h5 class="mb-1">e-mail:</h5>
+          <input
+            required
+            type="email"
+            placeholder="ejemplo@correo.com"
+            id="txtFormEmail"
+            class="input-group mb-3 m-sm-2"
+          />
+          <input
+            type="submit"
+            id="btnFormEnviar"
+            class="btn btn-primary mt-3 mb-2 col-5"
+            value="ENVIAR"
+          />
+        </form>
       </section>
     </main>
 
@@ -77,5 +119,8 @@
         All rights reserved<b id="actualYear"> | 2023</b>
       </p>
     </footer>
+
+    <!-- script -->
+    <script src="../assets/js/app.js"></script>
   </body>
 </html>
