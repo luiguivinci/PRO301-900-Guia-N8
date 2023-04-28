@@ -19,33 +19,28 @@ let yearNacimiento;
 //
 // Declaración de variables ya validadas en el formulario
 // Validación del Rut
-const validated_txtFormRut =
-  txtFormRut.value !== "" && rutValido === true ? txtFormRut.value : false;
+let validated_txtFormRut;
 
 // Validación del nombre
-const validated_txtFormNombre =
-  txtFormNombre.value !== "" ? txtFormNombre.value : false;
+let validated_txtFormNombre;
 
 // Validación de edad
-const validated_intFormEdad =
-  intFormEdad.value !== "" ? intFormEdad.value : false;
+let validated_intFormEdad;
 
 // Validación de fecha de nacimiento
-const validated_txtFormFechaNacimiento =
-  txtFormFechaNacimiento.value !== "" ? txtFormFechaNacimiento.value : false;
+let validated_txtFormFechaNacimiento;
 
 // Validación de email
-const validated_txtFormEmail =
-  txtFormEmail.value !== "" ? txtFormEmail.value : false;
+let validated_txtFormEmail;
 
 //
 // Declaración de variables que capturarán los botones
-const btnFormEnviar = document.getElementById("btnFormEnviar");
+let btnFormEnviar = document.getElementById("btnFormEnviar");
 
 //
 // Label que controla excepciones
-const labelCampoRequerido = document.getElementById("labelCampoRequerido");
-const labelRut = document.getElementById("labelRut");
+let labelCampoRequerido = document.getElementById("labelCampoRequerido");
+let labelRut = document.getElementById("labelRut");
 
 document.addEventListener("DOMContentLoaded", () => {
   //
@@ -60,18 +55,22 @@ document.addEventListener("DOMContentLoaded", () => {
       txtFormRut.removeAttribute("disabled");
     } else {
       labelRut.classList.add("d-none");
+      validated_txtFormRut = validatorRut(txtFormRut.value)
+        ? txtFormRut.value
+        : false;
     }
-  });
+  }); // QUEDE AKI PARA VALIDAR BIEN EL OUTPUT DEL RUT
 
   // validador nombre
   txtFormNombre.addEventListener("input", () => {
-    formatInputNombre(txtFormNombre);
+    validated_txtFormNombre = formatInputNombre(txtFormNombre);
   });
 
   // validador edad
   intFormEdad.addEventListener("input", () => {
-    yearNacimiento = formatInputEdad(intFormEdad);
+    yearNacimiento = formatInputEdad(intFormEdad)[1];
     txtFormFechaNacimiento.value = `${yearNacimiento}-01-01`;
+    validated_intFormEdad = intFormEdad.value;
   });
 
   // validador fecha de nacimiento
@@ -81,11 +80,16 @@ document.addEventListener("DOMContentLoaded", () => {
       txtFormFechaNacimiento.value === ""
         ? `${yearNacimiento}${"-01-01"}`
         : `${yearNacimiento}${fechaNac}`;
+    validated_txtFormFechaNacimiento = txtFormFechaNacimiento.value;
   });
 
   // validador email
-  txtFormEmail.addEventListener("input", () => {
-    validated_txtFormEmail = formatInputEmail(txtFormEmail); // QUEDE AQUI HACEINDO LOS ULTIMOS DETALLES DE VALIDADOR en variables validated
+  txtFormEmail.addEventListener("change", () => {
+    validated_txtFormEmail = formatInputEmail(txtFormEmail);
+    txtFormEmail.value =
+      validated_txtFormEmail !== false
+        ? validated_txtFormEmail
+        : txtFormEmail.value;
     console.log(validated_txtFormEmail);
   });
 
