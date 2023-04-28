@@ -15,6 +15,7 @@ let rutValido;
 //
 // Declaración de variables auxiliares
 let yearNacimiento;
+let dataFormulario = new Array();
 
 //
 // Declaración de variables ya validadas en el formulario
@@ -49,17 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // validador rut
   txtFormRut.addEventListener("input", () => {
     formatInputRut(txtFormRut);
-    rutValido = validatorRut(txtFormRut.value);
-    if (txtFormRut.value.length === 12 && rutValido === false) {
+    if (!formatInputRut(txtFormRut)) {
       labelRut.classList.remove("d-none");
       txtFormRut.removeAttribute("disabled");
     } else {
       labelRut.classList.add("d-none");
-      validated_txtFormRut = validatorRut(txtFormRut.value)
-        ? txtFormRut.value
-        : false;
+      validated_txtFormRut = txtFormRut.value;
     }
-  }); // QUEDE AKI PARA VALIDAR BIEN EL OUTPUT DEL RUT
+  });
 
   // validador nombre
   txtFormNombre.addEventListener("input", () => {
@@ -90,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
       validated_txtFormEmail !== false
         ? validated_txtFormEmail
         : txtFormEmail.value;
-    console.log(validated_txtFormEmail);
   });
 
   //
@@ -126,11 +123,17 @@ document.addEventListener("DOMContentLoaded", () => {
       labelCampoRequerido.classList.add("d-none");
 
       // Mostrando en consola los datos enviados por el formulario
-      console.log(`${validated_txtFormRut}`);
-      console.log(`${validated_txtFormNombre}`);
-      console.log(`${validated_intFormEdad}`);
-      console.log(`${validated_txtFormFechaNacimiento}`);
-      console.log(`${validated_txtFormEmail}`);
+      let persona = {
+        rut: validated_txtFormRut,
+        nombre: validated_txtFormNombre,
+        edad: validated_intFormEdad,
+        fechaNacimiento: validated_txtFormFechaNacimiento,
+        email: validated_txtFormEmail,
+      };
+      dataFormulario.push(persona);
+      console.log(dataFormulario);
+      persona = {};
+      dataFormulario = new Array();
 
       Swal.fire({
         title: "Formulario enviado!",
